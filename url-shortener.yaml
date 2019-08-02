@@ -7,7 +7,7 @@ Resources:
     Properties:
       Handler: url-shortener.lambda_handler
       Runtime: python3.7
-      CodeUri: ./
+      CodeUri: .
       Description: ''
       MemorySize: 128
       Timeout: 3
