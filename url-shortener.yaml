@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Serverless Specification template describing your function.
+Resources:
+  urlshortener:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: url-shortener.lambda_handler
+      Runtime: python3.7
+      CodeUri: ./
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::042792648150:role/service-role/url-shortener-role-gmwupkfc'
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /shorten
+            Method: POST
+        Api2:
+          Type: Api
+          Properties:
+            Path: /url-shortener
+            Method: POST
+      Environment:
+        Variables:
+          APP_URL: 'https://rqw25xitul.execute-api.us-east-2.amazonaws.com/default/t/'
+          MAX_CHAR: '10'
+          MIN_CHAR: '5'
