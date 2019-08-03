@@ -21,7 +21,7 @@ Resources:
               produces:
               - "text/html"
               responses:
-                200:
+                "200":
                   description: "200 response"
                   headers:
                     Content-Type:
@@ -31,7 +31,7 @@ Resources:
               produces:
               - "application/json"
               responses:
-                200:
+                "200":
                   description: "200 response"
                   schema:
                     $ref: "#/definitions/Empty"
@@ -46,7 +46,7 @@ Resources:
               produces:
               - "application/json"
               responses:
-                200:
+                "200":
                   description: "200 response"
                   schema:
                     $ref: "#/definitions/Empty"
@@ -67,7 +67,7 @@ Resources:
                 required: true
                 type: "string"
               responses:
-                301:
+                "301":
                   description: "301 response"
                   headers:
                     Location:
@@ -77,7 +77,7 @@ Resources:
               produces:
               - "application/json"
               responses:
-                200:
+                "200":
                   description: "200 response"
                   schema:
                     $ref: "#/definitions/Empty"
