@@ -6,6 +6,8 @@ from random import choice, randint
 from time import strftime, time
 from urllib import parse
 
+#Add this line of comment for verify CI/CD has been setup successfully
+
 app_url = os.getenv('APP_URL')
 min_char = int(os.getenv('MIN_CHAR'))
 max_char = int(os.getenv('MAX_CHAR'))
