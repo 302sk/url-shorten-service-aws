@@ -5,6 +5,7 @@ Resources:
   urlshortener:
     Type: 'AWS::Serverless::Function'
     Properties:
+      FunctionName: url-shortener-prd 
       Handler: url-shortener.lambda_handler
       Runtime: python3.7
       CodeUri: ./
@@ -17,11 +18,6 @@ Resources:
           Type: Api
           Properties:
             Path: /shorten
-            Method: POST
-        Api2:
-          Type: Api
-          Properties:
-            Path: /url-shortener
             Method: POST
       Environment:
         Variables:
