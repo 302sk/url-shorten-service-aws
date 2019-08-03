@@ -11,7 +11,7 @@ Resources:
         swagger: "2.0"
         info:
           version: "2019-08-02T03:55:22Z"
-          title: "url-shortener-API-prd"
+          title: "url-shrt-API-prd"
         basePath: "/default"
         schemes:
         - "https"
