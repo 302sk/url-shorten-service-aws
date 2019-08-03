@@ -7,7 +7,7 @@ Resources:
     Properties:
       Name: url-shorten-service-api-prd
       Description: url shorten service api for production env
-      Body:
+      DefinitionBody:
         swagger: "2.0"
         info:
           version: "2019-08-02T03:55:22Z"
