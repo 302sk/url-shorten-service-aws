@@ -12,3 +12,4 @@ artifacts:
   files:
     - url-shortener.yaml
     - outputtemplate.yaml
+    - url-shortener.py
