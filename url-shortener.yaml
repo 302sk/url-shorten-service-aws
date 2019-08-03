@@ -3,7 +3,7 @@ Transform: 'AWS::Serverless-2016-10-31'
 Description: An AWS Serverless Specification template describing your function.
 Resources:
   PlayersAPI:
-    Type: AWS::ApiGateway::RestApi
+    Type: AWS::Serverless::Api
     Properties:
       Name: url-shorten-service-api-prd
       Description: url shorten service api for production env
@@ -104,7 +104,7 @@ Resources:
       Timeout: 3
       Role: 'arn:aws:iam::042792648150:role/service-role/url-shortener-role-gmwupkfc'
       Events:
-        Api1:
+        ApiEvent:
           Type: Api
           Properties:
             RestApiId: !Ref PlayersAPI
@@ -128,7 +128,7 @@ Resources:
       Role: >-
         arn:aws:iam::042792648150:role/service-role/url-shorten-page-role-4jfjr6k2
       Events:
-        Api1:
+        ApiEvent:
           Type: Api
           Properties:
             RestApiId: !Ref PlayersAPI
@@ -147,7 +147,7 @@ Resources:
       Role: >-
         arn:aws:iam::042792648150:role/service-role/access_short_url-role-yub9wxhn
       Events:
-        Api1:
+        ApiEvent:
           Type: Api
           Properties:
             RestApiId: !Ref PlayersAPI
