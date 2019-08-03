@@ -107,7 +107,7 @@ Resources:
         Api1:
           Type: Api
           Properties:
-            RestApiId: url-shorten-service-api-prd
+            RestApiId: !Ref PlayersAPI
             Path: /shorten
             Method: POST
       Environment:
@@ -131,7 +131,7 @@ Resources:
         Api1:
           Type: Api
           Properties:
-            RestApiId: url-shorten-service-api-prd
+            RestApiId: !Ref PlayersAPI
             Path: /index
             Method: GET
   accessshorturl:
@@ -150,6 +150,6 @@ Resources:
         Api1:
           Type: Api
           Properties:
-            RestApiId: url-shorten-service-api-prd
+            RestApiId: !Ref PlayersAPI
             Path: '/t/{urlid}'
             Method: GET
