@@ -24,3 +24,39 @@ Resources:
           APP_URL: 'https://rqw25xitul.execute-api.us-east-2.amazonaws.com/default/t/'
           MAX_CHAR: '10'
           MIN_CHAR: '5'
+  urlshortenpage:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: url-shorten-page-prd
+      Handler: url-shorten-page.lambda_handler
+      Runtime: python3.7
+      CodeUri: ./
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: >-
+        arn:aws:iam::042792648150:role/service-role/url-shorten-page-role-4jfjr6k2
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /index
+            Method: GET
+  accessshorturl:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: access-short-url-prd
+      Handler: access-short-url.lambda_handler
+      Runtime: python3.7
+      CodeUri: ./
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: >-
+        arn:aws:iam::042792648150:role/service-role/access_short_url-role-yub9wxhn
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: '/t/{urlid}'
+            Method: GET
