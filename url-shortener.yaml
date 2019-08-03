@@ -6,7 +6,6 @@ Resources:
     Type: AWS::Serverless::Api
     Properties:
       Name: url-shorten-service-api-prd
-      Description: url shorten service api for production env
       DefinitionBody:
         swagger: "2.0"
         info:
