@@ -51,8 +51,8 @@ Resources:
                   headers:
                     Access-Control-Allow-Origin:
                       type: "string"
-              security:
-              - api_key: []
+              # security:
+              # - api_key: []
               x-amazon-apigateway-integration:
                 uri: !Sub "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${urlshortener.Arn}/invocations"
                 responses:

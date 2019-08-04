@@ -20,7 +20,7 @@ def lambda_handler(event, context):
                 var settings = {
                     "async": true,
                     "crossDomain": true,
-                    "url": "https://rqw25xitul.execute-api.us-east-2.amazonaws.com/default/shorten",
+                    "url": "https://f2hc0ixvg1.execute-api.us-east-2.amazonaws.com/Prod/shorten",
                     "method": "POST",
                     "headers": {
                         "x-api-key": "RQT9BoC1BX8DmgfLKvdvf5iCaxjURBLz1wyXWKbL",

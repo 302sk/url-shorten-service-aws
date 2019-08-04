@@ -39,6 +39,7 @@ def lambda_handler(event, context):
     analytics = {}
     print(event)
     short_id = generate_id()
+    app_url = "https://" + event.get('requestContext').get('domainName')+ '/' + event.get('requestContext').get('stage')+'/t/'
     short_url = app_url + short_id
     print("debug::",type(event.get('body')))
     long_url = json.loads(event.get('body')).get('long_url')
