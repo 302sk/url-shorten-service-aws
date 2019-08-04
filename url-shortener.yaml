@@ -2,96 +2,96 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
 Description: An AWS Serverless Specification template describing your function.
 Resources:
-  # PlayersAPI:
-  #   Type: AWS::Serverless::Api
-  #   Properties:
-  #     Name: url-shorten-service-api-prd
-  #     StageName: Prod
-  #     DefinitionBody:
-  #       swagger: "2.0"
-  #       info:
-  #         version: "2019-08-02T03:55:22Z"
-  #         title: "url-shrt-API-prd"
-  #       basePath: "/default"
-  #       schemes:
-  #       - "https"
-  #       paths:
-  #         /index:
-  #           get:
-  #             produces:
-  #             - "text/html"
-  #             responses:
-  #               "200":
-  #                 description: "200 response"
-  #                 headers:
-  #                   Content-Type:
-  #                     type: "string"
-  #         /shorten:
-  #           post:
-  #             produces:
-  #             - "application/json"
-  #             responses:
-  #               "200":
-  #                 description: "200 response"
-  #                 schema:
-  #                   $ref: "#/definitions/Empty"
-  #                 headers:
-  #                   Access-Control-Allow-Origin:
-  #                     type: "string"
-  #             security:
-  #             - api_key: []
-  #           options:
-  #             consumes:
-  #             - "application/json"
-  #             produces:
-  #             - "application/json"
-  #             responses:
-  #               "200":
-  #                 description: "200 response"
-  #                 schema:
-  #                   $ref: "#/definitions/Empty"
-  #                 headers:
-  #                   Access-Control-Allow-Origin:
-  #                     type: "string"
-  #                   Access-Control-Allow-Methods:
-  #                     type: "string"
-  #                   Access-Control-Allow-Headers:
-  #                     type: "string"
-  #         /t/{urlid}:
-  #           get:
-  #             consumes:
-  #             - "application/json"
-  #             parameters:
-  #             - name: "urlid"
-  #               in: "path"
-  #               required: true
-  #               type: "string"
-  #             responses:
-  #               "301":
-  #                 description: "301 response"
-  #                 headers:
-  #                   Location:
-  #                     type: "string"
-  #         /url-shortener:
-  #           post:
-  #             produces:
-  #             - "application/json"
-  #             responses:
-  #               "200":
-  #                 description: "200 response"
-  #                 schema:
-  #                   $ref: "#/definitions/Empty"
-  #             security:
-  #             - api_key: []
-  #       securityDefinitions:
-  #         api_key:
-  #           type: "apiKey"
-  #           name: "x-api-key"
-  #           in: "header"
-  #       definitions:
-  #         Empty:
-  #           type: "object"
-  #           title: "Empty Schema"
+  PlayersAPI:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: url-shorten-service-api-prd
+      StageName: Prod
+      DefinitionBody:
+        swagger: "2.0"
+        info:
+          version: "2019-08-02T03:55:22Z"
+          title: "url-shrt-API-prd"
+        basePath: "/default"
+        schemes:
+        - "https"
+        paths:
+          /index:
+            get:
+              produces:
+              - "text/html"
+              responses:
+                "200":
+                  description: "200 response"
+                  headers:
+                    Content-Type:
+                      type: "string"
+          /shorten:
+            post:
+              produces:
+              - "application/json"
+              responses:
+                "200":
+                  description: "200 response"
+                  schema:
+                    $ref: "#/definitions/Empty"
+                  headers:
+                    Access-Control-Allow-Origin:
+                      type: "string"
+              security:
+              - api_key: []
+            options:
+              consumes:
+              - "application/json"
+              produces:
+              - "application/json"
+              responses:
+                "200":
+                  description: "200 response"
+                  schema:
+                    $ref: "#/definitions/Empty"
+                  headers:
+                    Access-Control-Allow-Origin:
+                      type: "string"
+                    Access-Control-Allow-Methods:
+                      type: "string"
+                    Access-Control-Allow-Headers:
+                      type: "string"
+          /t/{urlid}:
+            get:
+              consumes:
+              - "application/json"
+              parameters:
+              - name: "urlid"
+                in: "path"
+                required: true
+                type: "string"
+              responses:
+                "301":
+                  description: "301 response"
+                  headers:
+                    Location:
+                      type: "string"
+          /url-shortener:
+            post:
+              produces:
+              - "application/json"
+              responses:
+                "200":
+                  description: "200 response"
+                  schema:
+                    $ref: "#/definitions/Empty"
+              security:
+              - api_key: []
+        securityDefinitions:
+          api_key:
+            type: "apiKey"
+            name: "x-api-key"
+            in: "header"
+        definitions:
+          Empty:
+            type: "object"
+            title: "Empty Schema"
   urlshortener:
     Type: 'AWS::Serverless::Function'
     Properties:
@@ -107,7 +107,7 @@ Resources:
         ApiEvent:
           Type: Api
           Properties:
-            # RestApiId: !Ref PlayersAPI
+            RestApiId: !Ref PlayersAPI
             Path: /shorten
             Method: POST
       Environment:
@@ -131,7 +131,7 @@ Resources:
         ApiEvent:
           Type: Api
           Properties:
-            # RestApiId: !Ref PlayersAPI
+            RestApiId: !Ref PlayersAPI
             Path: /index
             Method: GET
   accessshorturl:
@@ -150,6 +150,6 @@ Resources:
         ApiEvent:
           Type: Api
           Properties:
-            # RestApiId: !Ref PlayersAPI
+            RestApiId: !Ref PlayersAPI
             Path: '/t/{urlid}'
             Method: GET
