@@ -26,6 +26,19 @@ Resources:
                   headers:
                     Content-Type:
                       type: "string"
+              x-amazon-apigateway-integration:
+                uri: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${urlshortenpage.Arn}/invocations"
+                responses:
+                  default:
+                    statusCode: "200"
+                    responseParameters:
+                      method.response.header.Content-Type: "'text/html'"
+                    responseTemplates:
+                      text/html: "$input.path('$')"
+                passthroughBehavior: "when_no_match"
+                httpMethod: "POST"
+                contentHandling: "CONVERT_TO_TEXT"
+                type: "aws"
           /shorten:
             post:
               produces:
@@ -40,6 +53,17 @@ Resources:
                       type: "string"
               security:
               - api_key: []
+              x-amazon-apigateway-integration:
+                uri: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${urlshortener.Arn}/invocations"
+                responses:
+                  default:
+                    statusCode: "200"
+                    responseParameters:
+                      method.response.header.Access-Control-Allow-Origin: "'*'"
+                passthroughBehavior: "when_no_match"
+                httpMethod: "POST"
+                contentHandling: "CONVERT_TO_TEXT"
+                type: "aws_proxy"
             # options:
             #   consumes:
             #   - "application/json"
@@ -72,17 +96,19 @@ Resources:
                   headers:
                     Location:
                       type: "string"
-          /url-shortener:
-            post:
-              produces:
-              - "application/json"
-              responses:
-                "200":
-                  description: "200 response"
-                  schema:
-                    $ref: "#/definitions/Empty"
-              security:
-              - api_key: []
+              x-amazon-apigateway-integration:
+                uri: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${accessshorturl.Arn}/invocations"
+                responses:
+                  default:
+                    statusCode: "301"
+                    responseParameters:
+                      method.response.header.Location: "integration.response.body.location"
+                passthroughBehavior: "when_no_templates"
+                httpMethod: "POST"
+                requestTemplates:
+                  application/json: "{\n    \"urlid\": \"$input.params('urlid')\"\n}"
+                contentHandling: "CONVERT_TO_TEXT"
+                type: "aws"
         securityDefinitions:
           api_key:
             type: "apiKey"
@@ -107,7 +133,7 @@ Resources:
         ApiEvent:
           Type: Api
           Properties:
-            # RestApiId: !Ref PlayersAPI
+            RestApiId: !Ref PlayersAPI
             Path: /shorten
             Method: POST
       Environment:
@@ -131,7 +157,7 @@ Resources:
         ApiEvent:
           Type: Api
           Properties:
-            # RestApiId: !Ref PlayersAPI
+            RestApiId: !Ref PlayersAPI
             Path: /index
             Method: GET
   accessshorturl:
@@ -150,6 +176,6 @@ Resources:
         ApiEvent:
           Type: Api
           Properties:
-            # RestApiId: !Ref PlayersAPI
+            RestApiId: !Ref PlayersAPI
             Path: '/t/{urlid}'
             Method: GET
