@@ -27,7 +27,7 @@ Resources:
                     Content-Type:
                       type: "string"
               x-amazon-apigateway-integration:
-                uri: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${urlshortenpage.Arn}/invocations"
+                uri: !Sub "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${urlshortenpage.Arn}/invocations"
                 responses:
                   default:
                     statusCode: "200"
@@ -54,7 +54,7 @@ Resources:
               security:
               - api_key: []
               x-amazon-apigateway-integration:
-                uri: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${urlshortener.Arn}/invocations"
+                uri: !Sub "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${urlshortener.Arn}/invocations"
                 responses:
                   default:
                     statusCode: "200"
@@ -97,7 +97,7 @@ Resources:
                     Location:
                       type: "string"
               x-amazon-apigateway-integration:
-                uri: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${accessshorturl.Arn}/invocations"
+                uri: !Sub "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${accessshorturl.Arn}/invocations"
                 responses:
                   default:
                     statusCode: "301"
